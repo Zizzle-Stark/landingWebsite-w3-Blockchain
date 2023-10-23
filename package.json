@@ -1,0 +1,25 @@
+{
+  "name": "landingwebsite-w3",
+  "version": "0.0.0",
+  "description": "nothing",
+  "main": "truffle-config.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Zizzle-Stark/landingWebsite-w3-Blockchain.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Zizzle-Stark/landingWebsite-w3-Blockchain/issues"
+  },
+  "homepage": "https://github.com/Zizzle-Stark/landingWebsite-w3-Blockchain#readme",
+  "devDependencies": {
+    "truffle": "^5.11.5"
+  }
+}
