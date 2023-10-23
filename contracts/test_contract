@@ -1,0 +1,6 @@
+// SPDX-License-Identifier: SEE LICENSE IN LICENSE
+pragma solidity 0.8.20;
+
+import "https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/token/ERC20/ERC20.solhttps://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/token/ERC20/ERC20.sol";
+
+
