@@ -1,0 +1,30 @@
+/* Style for the dashboard header */
+.dashboard-header {
+    background: #333;
+    color: #fff;
+    padding: 20px;
+}
+
+/* Style for navigation menu */
+.nav-menu {
+    background: #444;
+    color: #fff;
+    width: 250px;
+}
+
+.nav-item {
+    padding: 10px 20px;
+    border-bottom: 1px solid #666;
+    transition: background 0.3s;
+}
+
+.nav-item:hover {
+    background: #555;
+}
+
+/* Style for main content */
+.main-content {
+    padding: 20px;
+}
+
+/* Customize the rest of your dashboard components as needed */

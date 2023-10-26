@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: MIT
-pragma solidity 0.8.17;
+pragma solidity ^0.8.17;
 
 contract landAsset{
     receive() external payable { }
@@ -112,7 +112,7 @@ contract landAsset{
     }
 
     function addUser(
-         address _id,
+        address _id,
         string memory _name,
         uint _age,
         string memory _city,
