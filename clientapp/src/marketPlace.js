@@ -31,14 +31,3 @@ export default function ListedLand(){
         </div>
     );
 } 
-
-
-// return(
-//     <>
-//     {ListOfLand.map((land) => {
-//         <div className={land.name}>
-//            {land.element}
-//         </div>
-//     })}
-//     </>
-// )
