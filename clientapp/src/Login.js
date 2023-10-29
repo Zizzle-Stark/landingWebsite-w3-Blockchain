@@ -4,13 +4,13 @@ import { Homepage } from "./HomePage";
 export const Login = () => {
   const navigate = useNavigate();
   const [loading, setloading] = useState(false);
-  const [moveDash, setmoveDash] = useState(false);
   const [loginInput, setInput] = useState({
     name: " ",
     password: " ",
   });
   const validator = () => {
     let valid = false;
+    let username = "";
     const check = JSON.parse(localStorage.getItem("user"));
     if (!check) {
       navigate("./errorPage");
@@ -22,17 +22,18 @@ export const Login = () => {
         users.password === loginInput.password
       ) {
         valid = true;
+        username = users.name;
       }
       return true;
     });
-    return valid;
+    return { isAuth: valid, _username: username };
   };
   const handleSubmit = (event) => {
     event.preventDefault();
     setloading(true);
-    if (validator()) {
-    //   navigate("/dashboard");
-    setmoveDash(true)
+    let { isAuth, _username } = validator();
+    if (isAuth) {
+      navigate(`/dashboard/${_username}`);
     } else {
       navigate("/errorPage");
     }
@@ -102,7 +103,6 @@ export const Login = () => {
                   className="btn btn-login float-right"
                   value="Login"
                 />
-                {moveDash ? <Homepage /> : null}
               </div>
             </form>
           </div>
