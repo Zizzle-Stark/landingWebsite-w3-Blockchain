@@ -50,7 +50,7 @@ function YourLand(props) {
 }
 
 export const DashBoard = () => {
-  const { username } = useParams();
+  const { username } = useParams(" ");
   const navigate = useNavigate();
   const [isLandAdded, setLandAdded] = useState(false);
   const [isError, setError] = useState(false);
@@ -73,6 +73,12 @@ export const DashBoard = () => {
   useEffect(() => {
   },) ;
 
+  const moveMarketplace = () => {
+    console.log(username)
+    if(!username == " "){
+      navigate(`/marketPlace/${username}`)
+    }
+  }
   const handleClick = (event) => {
     event.preventDefault();
     landDetails.isLandVerified = false;
@@ -124,7 +130,7 @@ export const DashBoard = () => {
   return (
     <div className="dashboard">
       <nav className="navbar navbar-expand-md navbar-dark bg-dark">
-        <button onClick={() => {}}>Visit Market Place</button>
+        <button onClick={() => moveMarketplace()}>Visit Market Place</button>
         <div className="collapse navbar-collapse" id="navbarsExampleDefault">
           <ul className="navbar-nav mr-auto">
             <li className="nav-item">

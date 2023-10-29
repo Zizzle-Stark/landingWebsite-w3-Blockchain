@@ -12,6 +12,7 @@ function Inspector() {
   const handleVerify = (land) => {
     const index = listOfLands.findIndex((object) => land.landID === object.landID);
     listOfLands[index].isforSell = false
+    listOfLands[index] = true;
     localStorage.setItem('listOfLands',JSON.stringify(listOfLands))
     window.location.reload()
   };

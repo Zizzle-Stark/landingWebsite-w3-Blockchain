@@ -33,7 +33,7 @@ export const Login = () => {
     setloading(true);
     let { isAuth, _username } = validator();
     if (isAuth) {
-      navigate(`/dashboard/${_username}`);
+      navigate(`/marketPlace/${_username}`);
     } else {
       navigate("/errorPage");
     }
