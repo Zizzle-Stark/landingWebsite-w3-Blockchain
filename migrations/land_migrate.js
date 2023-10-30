@@ -1,5 +1,5 @@
-const landDeploy = require('../contracts/land.sol')
+const landDeploy = artifacts.require('../contracts/land.sol')
 
 module.exports = function(deployer){
-    
+    deployer.deploy(landDeploy);
 }

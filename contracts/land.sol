@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: MIT
-pragma solidity 0.8.17;
+pragma solidity 0.8.20;
 
 contract landAsset{
     receive() external payable { }
@@ -21,7 +21,6 @@ contract landAsset{
         string allLatitudeLongitude;
         uint propertyPID;
         bool isforSell;
-        address payable ownerAddress;
         bool isLandVerified;
         address payable landOwner;
         bool isRemoved;
@@ -50,21 +49,20 @@ contract landAsset{
     }
 
     function addLand(
-        address payable _landAddress,
+        address  _landAddress,
         uint256 _landID,
         string memory _Address,
         uint _price,
         string memory _allLatitudeLongitude,
         uint _propertyPID,
-        address payable _ownerAddress,
         bool _isLandVerified,
         address payable _landOwner
     ) public {
         bool _isforSell = true;
         bool _isRemoved = false;
-        lands memory _newland = lands(_landID,_Address,_price,_allLatitudeLongitude,_propertyPID,_isforSell,_ownerAddress,_isLandVerified,_landOwner, _isRemoved);
+        lands memory _newland = lands(_landID,_Address,_price,_allLatitudeLongitude,_propertyPID,_isforSell,_isLandVerified,_landOwner, _isRemoved);
         _landList[_landAddress] = _newland;
-        _landLog.push(payable (_ownerAddress));
+        _landLog.push(payable (_landOwner));
 
     }
 
@@ -91,7 +89,6 @@ contract landAsset{
         string memory allLatitudeLongitude,
         uint propertyPID,
         bool isforSell,
-        address payable ownerAddress,
         bool isLandVerified,
         address payable  landOwner,
         bool isRemoved
@@ -104,7 +101,6 @@ contract landAsset{
         _land.allLatitudeLongitude,
         _land.propertyPID,
         _land.isforSell,
-        _land.ownerAddress,
         _land.isLandVerified,
         _land.landOwner,
         _land.isRemoved

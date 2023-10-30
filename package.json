@@ -7,7 +7,8 @@
     "test": "test"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start-app": "cd ./clientapp && npm run start"
   },
   "repository": {
     "type": "git",
@@ -21,5 +22,11 @@
   "homepage": "https://github.com/Zizzle-Stark/landingWebsite-w3-Blockchain#readme",
   "devDependencies": {
     "truffle": "^5.11.5"
+  },
+  "dependencies": {
+    "bootstrap": "^5.3.2",
+    "ethers": "^6.8.0",
+    "jquery": "^3.7.1",
+    "popper.js": "^1.16.1"
   }
 }
