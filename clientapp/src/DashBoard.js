@@ -15,7 +15,7 @@ function ProfileInfo(props) {
 
   return (
     <div className="tags">
-      <h1>Profile Access</h1>
+      <h1 className="text-center">Profile Access</h1>
       <h3>{username}</h3>
       <h4>{userData.email}</h4>
     </div>
@@ -148,10 +148,11 @@ export const DashBoard = () => {
             onChange={handleInput}
           />
         </div>
-
+      <div className="text-center">
         <button className="btn btn-primary" onClick={handleClick}>
           Submit
         </button>
+        </div>
       </form>
     );
   }
@@ -166,7 +167,7 @@ export const DashBoard = () => {
           Visit Market Place
         </button>
         <div className="collapse navbar-collapse" id="navbarsExampleDefault">
-          <ul className="navbar-nav mr-auto">
+          <ul className="navbar-nav ml-auto">
             <li className="nav-item">
               <a
                 className="nav-link"

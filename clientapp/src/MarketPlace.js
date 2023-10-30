@@ -1,4 +1,5 @@
 import { ethers } from "ethers";
+import "./login.css";
 import { useState } from "react";
 import { useNavigate, useParams } from 'react-router-dom';
 const eth = new ethers.JsonRpcProvider('https://eth-sepolia.g.alchemy.com/v2/AxJV_qAMMt6cXXLiZuw2jV_t_q_3nPfV')
@@ -19,9 +20,11 @@ export default function ListedLand() {
     }
   }
   return (
-    <div>
-      <h1>Market Place</h1>
-      <button onClick={() => moveDashBoard()}> Go to DashBoard</button>
+    <div className="container center">
+      <h1 className="text-center">Market Place</h1>
+      <div className="text-center">
+      <button onClick={() => moveDashBoard()} className="btn btn-primary"> Go to DashBoard</button>
+      </div>
       <>
         <ListedLands listedLands={ListOfLands} setBlockNum = {setBlockNum} />
       </>

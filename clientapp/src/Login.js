@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Homepage } from "./HomePage";
+import "./login.css";
+
 export const Login = () => {
   const navigate = useNavigate();
   const [loading, setloading] = useState(false);
@@ -42,7 +44,7 @@ export const Login = () => {
     setInput({ ...loginInput, [event.target.name]: event.target.value });
   };
   return (
-    <div className="container my-5 d-flex flex-row justify-items-center align-content-center">
+    <div className="container center mb-5 bg-black">
       <section className="register-block">
         <div className="container">
           <div className="row ">
@@ -52,9 +54,9 @@ export const Login = () => {
                 <div className="form-group">
                   <label
                     htmlFor="exampleInputPhonenumber1"
-                    className="text-uppercase"
+                    
                   >
-                    UserName
+                    Enter UserName : 
                   </label>
                   <input
                     className="form-control"
@@ -68,9 +70,9 @@ export const Login = () => {
                 <div className="form-group">
                   <label
                     htmlFor="exampleInputPassword1"
-                    className="text-uppercase"
+                   
                   >
-                    Password
+                    Enter Password :
                   </label>
                   <input
                     className="form-control"
@@ -102,11 +104,16 @@ export const Login = () => {
                       </div>
                     </div>
                   ) : null}
-                  <input
-                    type="submit"
-                    className="btn btn-login float-right"
-                    value="Login"
-                  />
+
+                  <div>
+                    <div className="text-center">
+                      <input
+                        type="submit"
+                        className="btn btn-login btn-primary"
+                        value="Login"
+                      />
+                    </div>
+                  </div>
                 </div>
               </form>
             </div>
