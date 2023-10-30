@@ -42,72 +42,77 @@ export const Login = () => {
     setInput({ ...loginInput, [event.target.name]: event.target.value });
   };
   return (
-    <section className="register-block">
-      <div className="container">
-        <div className="row ">
-          <div className="col register-sec">
-            <h2 className="text-center">Login Here..</h2>
-            <form className="register-form" onSubmit={handleSubmit} action="">
-              <div className="form-group">
-                <label
-                  htmlFor="exampleInputPhonenumber1"
-                  className="text-uppercase"
-                >
-                  UserName
-                </label>
-                <input
-                  className="form-control"
-                  type="phonenumber"
-                  placeholder="Name is required"
-                  name="name"
-                  onChange={handleChange}
-                  id=""
-                />
-              </div>
-              <div className="form-group">
-                <label
-                  htmlFor="exampleInputPassword1"
-                  className="text-uppercase"
-                >
-                  Password
-                </label>
-                <input
-                  className="form-control"
-                  type="password"
-                  placeholder="Password is required"
-                  name="password"
-                  onChange={handleChange}
-                  id=""
-                />
-              </div>
-              <div className="form-group">
-                {loading ? (
-                  <div className="text-center">
-                    <span
-                      onClick={() => {
-                        navigate("/register");
-                      }}
-                      className="text-danger"
-                    >
-                      {" "}
-                      Kindly Register
-                    </span>
-                    <br />
-                    <div className="spinner-border text-primary " role="status">
-                      <span className="sr-only">Loading...</span>
+    <div className="container my-5 d-flex flex-row justify-items-center align-content-center">
+      <section className="register-block">
+        <div className="container">
+          <div className="row ">
+            <div className="col register-sec">
+              <h2 className="text-center">Login</h2>
+              <form className="register-form" onSubmit={handleSubmit} action="">
+                <div className="form-group">
+                  <label
+                    htmlFor="exampleInputPhonenumber1"
+                    className="text-uppercase"
+                  >
+                    UserName
+                  </label>
+                  <input
+                    className="form-control"
+                    type="phonenumber"
+                    placeholder="username"
+                    name="name"
+                    onChange={handleChange}
+                    id=""
+                  />
+                </div>
+                <div className="form-group">
+                  <label
+                    htmlFor="exampleInputPassword1"
+                    className="text-uppercase"
+                  >
+                    Password
+                  </label>
+                  <input
+                    className="form-control"
+                    type="password"
+                    placeholder="password"
+                    name="password"
+                    onChange={handleChange}
+                    id=""
+                  />
+                </div>
+                <div className="form-group">
+                  {loading ? (
+                    <div className="text-center">
+                      <span
+                        onClick={() => {
+                          navigate("/register");
+                        }}
+                        className="text-danger"
+                      >
+                        {" "}
+                        Kindly Register
+                      </span>
+                      <br />
+                      <div
+                        className="spinner-border text-primary "
+                        role="status"
+                      >
+                        <span className="sr-only">Loading...</span>
+                      </div>
                     </div>
-                  </div>
-                ) : null}
-                <input
-                  type="submit"
-                  className="btn btn-login float-right"
-                  value="Login"
-                />
-              </div>
-            </form>
+                  ) : null}
+                  <input
+                    type="submit"
+                    className="btn btn-login float-right"
+                    value="Login"
+                  />
+                </div>
+              </form>
+            </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </div>
   );
 };

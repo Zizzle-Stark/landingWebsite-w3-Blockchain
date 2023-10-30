@@ -12,18 +12,18 @@ function ProfileInfo(props) {
       return false;
     })
     .pop();
-  console.log(userData);
+
   return (
     <div className="tags">
-      <h1>Profile Access </h1>
-      <h3> {username}</h3>
-      <h4> {userData.email}</h4>
+      <h1>Profile Access</h1>
+      <h3>{username}</h3>
+      <h4>{userData.email}</h4>
     </div>
   );
 }
 
 function YourLand(props) {
-  const lands = JSON.parse(localStorage.getItem("listOfLands")) || []
+  const lands = JSON.parse(localStorage.getItem("listOfLands")) || [];
   let isLand = false;
   const toDisplay = lands.filter((land) => {
     if (land.landOwner === undefined) {
@@ -35,22 +35,25 @@ function YourLand(props) {
     }
     return false;
   });
-  console.log(toDisplay);
-  return isLand
-    ? toDisplay.map((toDisplayLad) => {
-        return (
+
+  return isLand ? (
+    toDisplay.map((toDisplayLad) => {
+      return (
+        <div key={toDisplayLad.landID}>
           <h1>
             {toDisplayLad.landAddress}
             <br />
             {toDisplayLad.landID}
           </h1>
-        );
-      })
-    : (()=> <h1> No Asset yet</h1>)() ;
+        </div>
+      );
+    })
+  ) : (
+    <h1>No Asset yet</h1>
+  );
 }
-
 export const DashBoard = () => {
-  const { username } = useParams(" ");
+  const { username } = useParams();
   const navigate = useNavigate();
   const [isLandAdded, setLandAdded] = useState(false);
   const [isError, setError] = useState(false);
@@ -66,19 +69,17 @@ export const DashBoard = () => {
     landOwner: " ",
     isRemoved: " ",
   });
+
   const handleInput = (event) => {
     setLandDetails({ ...landDetails, [event.target.name]: event.target.value });
   };
 
-  useEffect(() => {
-  },) ;
-
   const moveMarketplace = () => {
-    console.log(username)
-    if(!username == " "){
-      navigate(`/marketPlace/${username}`)
+    if (username !== " ") {
+      navigate(`/marketPlace/${username}`);
     }
-  }
+  };
+
   const handleClick = (event) => {
     event.preventDefault();
     landDetails.isLandVerified = false;
@@ -86,51 +87,84 @@ export const DashBoard = () => {
     landDetails.isforSell = true;
     landDetails.allLatitudeLongitude = 1000;
     landDetails.landOwner = username;
-    Object.keys(landDetails).map((key) => {
-      console.table(landDetails);
+    Object.keys(landDetails).forEach((key) => {
       if (landDetails[key] === " ") {
         setError(true);
       }
-      return;
     });
     addLandtoStorage(landDetails);
-    window.location.reload()
+    window.location.reload();
   };
+
   function addForm() {
     return (
-      <>
-        <form>
-          <br />
+      <form>
+        <div className="form-group">
           <label>Enter your Land wallet Address</label>
-          <br />
-          <input type="text" name="landAddress" onChange={handleInput} />
-          <br />
+          <input
+            type="text"
+            className="form-control"
+            name="landAddress"
+            onChange={handleInput}
+          />
+        </div>
+
+        <div className="form-group">
           <label>Enter your Land ID</label>
-          <br />
-          <input type="text" name="landID" onChange={handleInput} />
-          <br />
+          <input
+            type="text"
+            className="form-control"
+            name="landID"
+            onChange={handleInput}
+          />
+        </div>
+
+        <div className="form-group">
           <label>Enter your Land Location</label>
-          <br />
-          <input type="text" name="landlocation" onChange={handleInput} />
-          <br />
-          <label>Enter your Property ID </label>
-          <br />
-          <input type="text" name="propertyPID" onChange={handleInput} />
-          <br />
-          <label>Enter Land Price </label>
-          <br />
-          <input type="text" name="price" onChange={handleInput} />
-          <br />
-          <button onClick={handleClick}>Submit</button>
-        </form>
-      </>
+          <input
+            type="text"
+            className="form-control"
+            name="landlocation"
+            onChange={handleInput}
+          />
+        </div>
+
+        <div className="form-group">
+          <label>Enter your Property ID</label>
+          <input
+            type="text"
+            className="form-control"
+            name="propertyPID"
+            onChange={handleInput}
+          />
+        </div>
+
+        <div className="form-group">
+          <label>Enter Land Price</label>
+          <input
+            type="text"
+            className="form-control"
+            name="price"
+            onChange={handleInput}
+          />
+        </div>
+
+        <button className="btn btn-primary" onClick={handleClick}>
+          Submit
+        </button>
+      </form>
     );
   }
 
   return (
     <div className="dashboard">
       <nav className="navbar navbar-expand-md navbar-dark bg-dark">
-        <button onClick={() => moveMarketplace()}>Visit Market Place</button>
+        <button
+          className="btn btn-secondary"
+          onClick={() => moveMarketplace()}
+        >
+          Visit Market Place
+        </button>
         <div className="collapse navbar-collapse" id="navbarsExampleDefault">
           <ul className="navbar-nav mr-auto">
             <li className="nav-item">
@@ -147,10 +181,13 @@ export const DashBoard = () => {
           </ul>
         </div>
       </nav>
-      <main role="main" class="container mt-5">
-        <div class="container">
+
+      <main role="main" className="container mt-5">
+        <div className="container">
+        <ProfileInfo value={username} />
           {!isLandAdded ? (
             <button
+              className="btn btn-primary"
               onClick={() => {
                 setLandAdded(true);
               }}
@@ -158,13 +195,12 @@ export const DashBoard = () => {
               Add Land
             </button>
           ) : null}
-          <ProfileInfo value={username} />
           {isLandAdded ? addForm() : null}
           {isError ? <h1>Move To Market Place</h1> : null}
         </div>
         <div>
-          Your Digital Assest
-          <YourLand value={username} />
+          Your Digital Asset
+          <YourLand value={username} /> 
         </div>
       </main>
     </div>

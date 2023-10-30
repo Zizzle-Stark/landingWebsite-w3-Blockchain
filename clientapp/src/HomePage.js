@@ -20,7 +20,7 @@ export const Homepage = () => {
           <span className="navbar-toggler-icon"></span>
         </button>
         <div className="collapse navbar-collapse" id="navbarsExampleDefault">
-          <ul className="navbar-nav mr-auto">
+          <ul className="navbar-nav ml-auto ps-5">
             <li className="nav-item">
               <a
                 className="nav-link"
