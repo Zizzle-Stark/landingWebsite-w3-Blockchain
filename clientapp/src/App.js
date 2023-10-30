@@ -7,6 +7,7 @@ import ErrorPage from "./ErrorPage";
 import styles from "./App.css";
 import ListedLand from "./MarketPlace";
 import Inspector from "./Inspector";
+import Orders from "./LandList";
 export const App = () => {
   return (
     <div className={`${styles.App}`}>

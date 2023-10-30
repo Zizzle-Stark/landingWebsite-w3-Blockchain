@@ -3,18 +3,20 @@ import { useEffect, useState } from "react";
 function Inspector() {
   const listOfLands = JSON.parse(localStorage.getItem("listOfLands")) || [];
   const toVerify = listOfLands.filter((land) => {
-    if (land.isforSell) {
+    if (! land.isforSell) {
       return true;
     }
     return false;
   });
 
   const handleVerify = (land) => {
-    const index = listOfLands.findIndex((object) => land.landID === object.landID);
-    listOfLands[index].isforSell = false
-    listOfLands[index] = true;
-    localStorage.setItem('listOfLands',JSON.stringify(listOfLands))
-    window.location.reload()
+    const index = listOfLands.findIndex(
+      (object) => land.landID === object.landID
+    );
+    listOfLands[index].isforSell = true
+    listOfLands[index].isLandVerified = true;
+    localStorage.setItem("listOfLands", JSON.stringify(listOfLands));
+    window.location.reload();
   };
   return (
     <>

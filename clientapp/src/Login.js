@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Homepage } from "./HomePage";
+import { Avatar } from "@mui/material";
+import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import "./login.css";
 
 export const Login = () => {
@@ -50,6 +51,9 @@ export const Login = () => {
           <div className="row ">
             <div className="col register-sec">
               <h2 className="text-center">Login</h2>
+              <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
+                <LockOutlinedIcon />
+              </Avatar>
               <form className="register-form" onSubmit={handleSubmit} action="">
                 <div className="form-group">
                   <label

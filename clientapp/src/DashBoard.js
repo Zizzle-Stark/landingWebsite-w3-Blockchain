@@ -1,6 +1,14 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import addLandtoStorage from "./setLocalStorage";
+import * as React from "react";
+import Link from "@mui/material/Link";
+import Table from "@mui/material/Table";
+import TableBody from "@mui/material/TableBody";
+import TableCell from "@mui/material/TableCell";
+import TableHead from "@mui/material/TableHead";
+import TableRow from "@mui/material/TableRow";
+import Title from "./Title";
 
 function ProfileInfo(props) {
   const username = props.value;
@@ -37,17 +45,31 @@ function YourLand(props) {
   });
 
   return isLand ? (
-    toDisplay.map((toDisplayLad) => {
-      return (
-        <div key={toDisplayLad.landID}>
-          <h1>
-            {toDisplayLad.landAddress}
-            <br />
-            {toDisplayLad.landID}
-          </h1>
-        </div>
-      );
-    })
+    <React.Fragment>
+      <h2>Your Land</h2>
+      <table className="table table-striped table-bordered table-sm">
+        <thead>
+          <tr>
+            <th>Land Address</th>
+            <th>Land ID</th>
+            <th>Land Location</th>
+            <th>Property ID</th>
+            <th className="text-right">Is Land Verified</th>
+          </tr>
+        </thead>
+        <tbody>
+          {toDisplay.map((land) => (
+            <tr key={land.landID}>
+              <td>{land.landAddress}</td>
+              <td>{land.landID}</td>
+              <td>{land.landlocation}</td>
+              <td>{land.propertyPID}</td>
+              <td className="text-right">{land.isVerified ? 'Yes' : 'No'}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </React.Fragment>
   ) : (
     <h1>No Asset yet</h1>
   );

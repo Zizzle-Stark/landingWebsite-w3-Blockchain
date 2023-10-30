@@ -1,32 +1,38 @@
 import { ethers } from "ethers";
 import "./login.css";
 import { useState } from "react";
-import { useNavigate, useParams } from 'react-router-dom';
-const eth = new ethers.JsonRpcProvider('https://eth-sepolia.g.alchemy.com/v2/AxJV_qAMMt6cXXLiZuw2jV_t_q_3nPfV')
+import { useNavigate, useParams } from "react-router-dom";
+import Card from "react-bootstrap/Card";
+import Button from 'react-bootstrap/Button';
+const eth = new ethers.JsonRpcProvider(
+  "https://eth-sepolia.g.alchemy.com/v2/AxJV_qAMMt6cXXLiZuw2jV_t_q_3nPfV"
+);
 const ListOfLands = JSON.parse(localStorage.getItem("listOfLands")) || [];
 
 export default function ListedLand() {
-  const [isListedLand, setListedLand] = useState(false);
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const [blockNum, setBlockNum] = useState("");
-  const urlParam = useParams()
+  const urlParam = useParams();
   const moveDashBoard = () => {
-    console.log('sdf')
-    console.log(urlParam)
-    if(!urlParam.username == " "){
-      navigate(`/dashboard/${urlParam.username}`)
-    }else{
-      navigate('/login')
+    console.log("sdf");
+    console.log(urlParam);
+    if (!urlParam.username == " ") {
+      navigate(`/dashboard/${urlParam.username}`);
+    } else {
+      navigate("/login");
     }
-  }
+  };
   return (
     <div className="container center">
       <h1 className="text-center">Market Place</h1>
       <div className="text-center">
-      <button onClick={() => moveDashBoard()} className="btn btn-primary"> Go to DashBoard</button>
+        <button onClick={() => moveDashBoard()} className="btn btn-primary">
+          {" "}
+          Go to DashBoard
+        </button>
       </div>
       <>
-        <ListedLands listedLands={ListOfLands} setBlockNum = {setBlockNum} />
+        <ListedLands listedLands={ListOfLands} setBlockNum={setBlockNum} />
       </>
       <h2> {blockNum}</h2>
     </div>
@@ -38,22 +44,19 @@ function ListedLands(props) {
     if (land.landAddress === " " && land.price === " " && land.landID === " ") {
       return;
     }
-    if(!land.isLandVerified){
+    if (!land.isLandVerified) {
       return;
     }
     return (
-      <>
-        <h1>{land.landAddress}</h1>
-        <h2> {land.price}</h2>
-        <button
-          onClick={async () => {
-            props.setBlockNum (await eth.getBlockNumber());
-          }}
-        >
-          {" "}
-          Buy Land
-        </button>
-      </>
+      <Card style={{ width: "18rem" }} className="mb-3">
+      <Card.Body>
+        <Card.Title>{land.landID}</Card.Title>
+        <Card.Subtitle className="mb-2 text-muted">{land.price}</Card.Subtitle>
+        <Card.Subtitle className="mb-2 text-muted">{land.landAddress}</Card.Subtitle>
+        <Card.Text>This is a beautiful piece of land</Card.Text>
+        <Button variant="primary">Buy</Button>
+      </Card.Body>
+    </Card>
     );
   });
 }
