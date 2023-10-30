@@ -2,13 +2,6 @@ import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import addLandtoStorage from "./setLocalStorage";
 import * as React from "react";
-import Link from "@mui/material/Link";
-import Table from "@mui/material/Table";
-import TableBody from "@mui/material/TableBody";
-import TableCell from "@mui/material/TableCell";
-import TableHead from "@mui/material/TableHead";
-import TableRow from "@mui/material/TableRow";
-import Title from "./Title";
 
 function ProfileInfo(props) {
   const username = props.value;
@@ -114,6 +107,7 @@ export const DashBoard = () => {
         setError(true);
       }
     });
+    navigate('/addUser')
     addLandtoStorage(landDetails);
     window.location.reload();
   };
