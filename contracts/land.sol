@@ -122,9 +122,10 @@ contract landAsset{
     _userLog.push(_id);
     }
 
-    function transferOwnerShip(address landAddress,address payable _newOwner) public ownerValidate(landAddress){
+    function transferOwnerShip(address landAddress,address payable _newOwner) public ownerValidate(landAddress) returns(address){
          transferEther(landAddress, _landList[landAddress].landOwner);
         _landList[landAddress].landOwner = _newOwner;
+        return _newOwner;
     }
 
     function transferEther(address landAddress, address  _sentTo) public payable etherValidate(landAddress,msg.value) returns (bool){
