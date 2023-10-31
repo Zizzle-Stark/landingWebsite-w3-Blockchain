@@ -7,6 +7,8 @@ import ErrorPage from "./ErrorPage";
 import styles from "./App.css";
 import ListedLand from "./MarketPlace";
 import Inspector from "./Inspector";
+import Orders from "./LandList";
+import AddUserForm from "./AddUser";
 export const App = () => {
   return (
     <div className={`${styles.App}`}>
@@ -20,6 +22,7 @@ export const App = () => {
           <Route path="/marketPlace" element={<ListedLand />} /> 
           <Route path="/marketPlace/:username" element={<ListedLand/>} />
           <Route path="/inspector" element={<Inspector />} />
+          <Route path="/addUser" element={<AddUserForm/>} />
         </Routes>
       </BrowserRouter>
     </div>

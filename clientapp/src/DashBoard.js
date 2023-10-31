@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import addLandtoStorage from "./setLocalStorage";
+import * as React from "react";
 
 function ProfileInfo(props) {
   const username = props.value;
@@ -15,9 +16,10 @@ function ProfileInfo(props) {
 
   return (
     <div className="tags">
-      <h1>Profile Access</h1>
-      <h3>{username}</h3>
-      <h4>{userData.email}</h4>
+      <h1 className="text-center">Profile Access</h1>
+      <h3>Username : {username}</h3>
+      <h4>Email ID : {userData.email}</h4>
+      <br/>
     </div>
   );
 }
@@ -37,17 +39,31 @@ function YourLand(props) {
   });
 
   return isLand ? (
-    toDisplay.map((toDisplayLad) => {
-      return (
-        <div key={toDisplayLad.landID}>
-          <h1>
-            {toDisplayLad.landAddress}
-            <br />
-            {toDisplayLad.landID}
-          </h1>
-        </div>
-      );
-    })
+    <React.Fragment>
+      <h3>Your Land</h3>
+      <table className="table table-striped table-bordered table-sm">
+        <thead>
+          <tr>
+            <th>Land Address</th>
+            <th>Land ID</th>
+            <th>Land Location</th>
+            <th>Property ID</th>
+            <th className="text-right">Is Land Verified</th>
+          </tr>
+        </thead>
+        <tbody>
+          {toDisplay.map((land) => (
+            <tr key={land.landID}>
+              <td>{land.landAddress}</td>
+              <td>{land.landID}</td>
+              <td>{land.landlocation}</td>
+              <td>{land.propertyPID}</td>
+              <td className="text-right">{land.isVerified ? 'Yes' : 'No'}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </React.Fragment>
   ) : (
     <h1>No Asset yet</h1>
   );
@@ -92,6 +108,7 @@ export const DashBoard = () => {
         setError(true);
       }
     });
+    navigate('/addUser')
     addLandtoStorage(landDetails);
     window.location.reload();
   };
@@ -148,10 +165,11 @@ export const DashBoard = () => {
             onChange={handleInput}
           />
         </div>
-
+      <div className="text-center">
         <button className="btn btn-primary" onClick={handleClick}>
           Submit
         </button>
+        </div>
       </form>
     );
   }
@@ -166,7 +184,7 @@ export const DashBoard = () => {
           Visit Market Place
         </button>
         <div className="collapse navbar-collapse" id="navbarsExampleDefault">
-          <ul className="navbar-nav mr-auto">
+          <ul className="navbar-nav ml-auto">
             <li className="nav-item">
               <a
                 className="nav-link"
@@ -198,8 +216,9 @@ export const DashBoard = () => {
           {isLandAdded ? addForm() : null}
           {isError ? <h1>Move To Market Place</h1> : null}
         </div>
+        <br/>
         <div>
-          Your Digital Asset
+          <h2>Your Digital Asset</h2>
           <YourLand value={username} /> 
         </div>
       </main>

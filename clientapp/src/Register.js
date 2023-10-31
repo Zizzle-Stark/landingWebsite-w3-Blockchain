@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./RegisterUI.css";
+import "./login.css";
+
 export const Registers = () => {
   const navigate = useNavigate();
   const [errorhandle] = useState({
@@ -50,20 +52,21 @@ export const Registers = () => {
   };
 
   return (
-    <section className="register-block">
+    <section className="container center register-block">
       <div className="container">
         <div className="row ">
           <div className="col register-sec">
-            <h2 className="text-center">Register Here</h2>
+            <h2 className="text-center">Register</h2>
             <form className="register-form" onSubmit={handleChange} action="">
               <div className="form-group">
-                <label htmlFor="exampleInputEmail1" className="text-uppercase">
-                  Name
+                <label htmlFor="exampleInputEmail1" className="">
+                  Enter Username : 
                 </label>
                 <input
                   type="text"
                   className="form-control"
                   name="name"
+                  placeholder="username"
                   onClick={() => {
                     if (inputs.name === "") {
                       errorhandle.nameError = true;
@@ -77,12 +80,13 @@ export const Registers = () => {
                 ) : null}
               </div>
               <div className="form-group">
-                <label htmlFor="exampleInputEmail1" className="text-uppercase">
-                  Email
+                <label htmlFor="exampleInputEmail1" className="">
+                  Enter Email ID : 
                 </label>
                 <input
                   type="text"
                   className="form-control"
+                  placeholder="example@email.com"
                   name="email"
                   onClick={() => {
                     if (inputs.email === "") {
@@ -99,12 +103,13 @@ export const Registers = () => {
               <div className="form-group">
                 <label
                   htmlFor="exampleInputPassword1"
-                  className="text-uppercase"
+                  className=""
                 >
-                  Password
+                  Enter Password :
                 </label>
                 <input
                   className="form-control"
+                  placeholder="password"
                   type="password"
                   name="password"
                   onClick={() => {
@@ -130,24 +135,27 @@ export const Registers = () => {
                     </div>
                   </div>
                 ) : null}
+                <div className="text-center">
                 <input
                   type="submit"
-                  className="btn btn-login float-right"
+                  className="btn btn-login btn-primary"
                   disabled={loading}
                   value="Register"
                 />
+                </div>
               </div>
               <div className="clearfix"></div>
               <div className="form-group">
-                Already have account ? Please{" "}
+                Already have account ? Please {" "}
                 <a
                   href="# "
                   onClick={() => {
                     navigate("/Login");
                   }}
                 >
-                  Login
+                  Login 
                 </a>
+                  {" "} here
               </div>
             </form>
           </div>

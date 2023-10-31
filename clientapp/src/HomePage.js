@@ -1,5 +1,4 @@
 import { useNavigate } from "react-router-dom";
-import ListedLand from "./MarketPlace";
 export const Homepage = () => {
   const navigate = useNavigate();
   return (
@@ -51,6 +50,7 @@ export const Homepage = () => {
           <div className="text-center mt-5">
             <h3> Home Page</h3>
             <p className="text-bold ">Hello user</p>
+            <button className="btn btn-primary" onClick={()=>navigate('/marketPlace')}> MarketPlace</button>
           </div>
         </div>
       </main>
