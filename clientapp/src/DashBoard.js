@@ -17,8 +17,9 @@ function ProfileInfo(props) {
   return (
     <div className="tags">
       <h1 className="text-center">Profile Access</h1>
-      <h3>{username}</h3>
-      <h4>{userData.email}</h4>
+      <h3>Username : {username}</h3>
+      <h4>Email ID : {userData.email}</h4>
+      <br/>
     </div>
   );
 }
@@ -39,7 +40,7 @@ function YourLand(props) {
 
   return isLand ? (
     <React.Fragment>
-      <h2>Your Land</h2>
+      <h3>Your Land</h3>
       <table className="table table-striped table-bordered table-sm">
         <thead>
           <tr>
@@ -215,8 +216,9 @@ export const DashBoard = () => {
           {isLandAdded ? addForm() : null}
           {isError ? <h1>Move To Market Place</h1> : null}
         </div>
+        <br/>
         <div>
-          Your Digital Asset
+          <h2>Your Digital Asset</h2>
           <YourLand value={username} /> 
         </div>
       </main>

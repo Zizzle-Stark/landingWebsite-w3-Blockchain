@@ -1,10 +1,6 @@
 import React, { useState } from "react";
 import Web3 from "web3";
-import Form from "react-bootstrap/Form";
-import Button from "react-bootstrap/Button";
-import Container from "react-bootstrap/Container";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
+import {Form, Button, Row, Col, Container} from "react-bootstrap";
 import { useNavigate } from 'react-router-dom';
 
 function AddUserForm() {
