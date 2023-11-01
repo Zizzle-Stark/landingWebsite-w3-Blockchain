@@ -3,7 +3,7 @@ import "./login.css";
 import { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import Card from "react-bootstrap/Card";
-import Button from 'react-bootstrap/Button';
+import Button from "react-bootstrap/Button";
 const eth = new ethers.JsonRpcProvider(
   "https://eth-sepolia.g.alchemy.com/v2/AxJV_qAMMt6cXXLiZuw2jV_t_q_3nPfV"
 );
@@ -22,6 +22,8 @@ export default function ListedLand() {
       navigate("/login");
     }
   };
+
+  
   return (
     <div className="container center">
       <h1 className="text-center">Market Place</h1>
@@ -49,14 +51,29 @@ function ListedLands(props) {
     }
     return (
       <Card style={{ width: "18rem" }} className="mb-3">
-      <Card.Body>
-        <Card.Title>{land.landID}</Card.Title>
-        <Card.Subtitle className="mb-2 text-muted">{land.price}</Card.Subtitle>
-        <Card.Subtitle className="mb-2 text-muted">{land.landAddress}</Card.Subtitle>
-        <Card.Text>This is a beautiful piece of land</Card.Text>
-        <Button variant="primary">Buy</Button>
-      </Card.Body>
-    </Card>
+        <Card.Body>
+          <Card.Title>{land.landID}</Card.Title>
+          <Card.Subtitle className="mb-2 text-muted">
+            {land.price}
+          </Card.Subtitle>
+          <Card.Subtitle className="mb-2 text-muted">
+            {land.landAddress}
+          </Card.Subtitle>
+          <Card.Subtitle className="mb-2 text-muted">
+            {land.landOwner}
+          </Card.Subtitle>
+          <Card.Text>This is a beautiful piece of land</Card.Text>
+          <Button variant="primary" onClick={()=>transferEther(land.landOwner)}>
+            Buy
+          </Button>
+        </Card.Body>
+      </Card>
     );
   });
 }
+
+const transferEther = (owner) => { 
+
+
+  ///  establish Ether contract
+};

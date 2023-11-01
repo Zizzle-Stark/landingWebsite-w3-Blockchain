@@ -2,13 +2,14 @@ import { useEffect, useState } from "react";
 
 function Inspector() {
   const listOfLands = JSON.parse(localStorage.getItem("listOfLands")) || [];
+  console.log(listOfLands)
   const toVerify = listOfLands.filter((land) => {
-    if (! land.isforSell) {
+    if (!land.isLandVerified) {
       return true;
     }
     return false;
   });
-
+  console.log(toVerify)
   const handleVerify = (land) => {
     const index = listOfLands.findIndex(
       (object) => land.landID === object.landID
@@ -22,6 +23,7 @@ function Inspector() {
     <>
       <div>
         {toVerify.map((land) => {
+          console.log(land)
           return (
             <>
               <h1>{land.landAddress}</h1>
