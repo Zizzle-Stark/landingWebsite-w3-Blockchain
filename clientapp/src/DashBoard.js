@@ -28,10 +28,10 @@ function YourLand(props) {
   const lands = JSON.parse(localStorage.getItem("listOfLands")) || [];
   let isLand = false;
   const toDisplay = lands.filter((land) => {
-    if (land.landOwner === undefined) {
+    if (land.accountOwner === undefined) {
       return false;
     }
-    if (land.landOwner === props.value) {
+    if (land.accountOwner === props.value) {
       isLand = true;
       return true;
     }
@@ -107,7 +107,6 @@ export const DashBoard = () => {
         setError(true);
       }
     });
-    navigate('/addUser')
     addLandtoStorage(landDetails);
     window.location.reload();
   };
