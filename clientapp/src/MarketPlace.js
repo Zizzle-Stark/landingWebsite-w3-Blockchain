@@ -1,9 +1,13 @@
-import { ethers } from "ethers";
 import "./login.css";
 import { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import Card from "react-bootstrap/Card";
-import Button from 'react-bootstrap/Button';
+import Button from "react-bootstrap/Button";
+import etherDone from "./etherCheck";
+// const eth = new ethers.JsonRpcProvider(
+//   "https://eth-sepolia.g.alchemy.com/v2/AxJV_qAMMt6cXXLiZuw2jV_t_q_3nPfV"
+// );
+const { ethers } = require("ethers");
 const eth = new ethers.JsonRpcProvider(
   "https://eth-sepolia.g.alchemy.com/v2/AxJV_qAMMt6cXXLiZuw2jV_t_q_3nPfV"
 );
@@ -14,14 +18,13 @@ export default function ListedLand() {
   const [blockNum, setBlockNum] = useState("");
   const urlParam = useParams();
   const moveDashBoard = () => {
-    console.log("sdf");
-    console.log(urlParam);
     if (!urlParam.username == " ") {
       navigate(`/dashboard/${urlParam.username}`);
     } else {
       navigate("/login");
     }
   };
+
   return (
     <div className="container center">
       <h1 className="text-center">Market Place</h1>
@@ -40,8 +43,31 @@ export default function ListedLand() {
 }
 
 function ListedLands(props) {
+  const param = useParams()
+  const navigate =  useNavigate()
+  const handleCheck = async (land) =>{
+    console.log(land.accountOwner,land.landAddress,land.price)
+    if(!param.username){
+      navigate('/login')
+      return
+    }
+    if(!param.username != land.accountOwner){
+      await etherDone()
+      const listOfLands = JSON.parse(localStorage.getItem("listOfLands")) || [];
+      console.log(listOfLands)
+      const index = listOfLands.findIndex(
+        (object) => land.accountOwner === param.username
+      ); 
+      listOfLands[index].isforSell = false
+      listOfLands[index].accountOwner = param.username
+      localStorage.setItem("listOfLands", JSON.stringify(listOfLands));
+      window.location.reload();
+    }
+    
+  }
   return props.listedLands.map((land) => {
-    if (land.landAddress === " " && land.price === " " && land.landID === " ") {
+    console.log(land.isforSell)
+    if (!land.isforSell || land.landAddress === " " && land.price === " " && land.landID === " ") {
       return;
     }
     if (!land.isLandVerified) {
@@ -49,14 +75,36 @@ function ListedLands(props) {
     }
     return (
       <Card style={{ width: "18rem" }} className="mb-3">
-      <Card.Body>
-        <Card.Title>{land.landID}</Card.Title>
-        <Card.Subtitle className="mb-2 text-muted">{land.price}</Card.Subtitle>
-        <Card.Subtitle className="mb-2 text-muted">{land.landAddress}</Card.Subtitle>
-        <Card.Text>This is a beautiful piece of land</Card.Text>
-        <Button variant="primary">Buy</Button>
-      </Card.Body>
-    </Card>
+        <Card.Body>
+          <Card.Text style={{ fontFamily: "monospace" }}> land ID</Card.Text>
+          <Card.Title>{land.landID}</Card.Title>
+          <Card.Text style={{ fontFamily: "monospace" }}> land Price</Card.Text>
+          <Card.Subtitle className="mb-2 text-muted">
+            {land.price}
+          </Card.Subtitle>
+          <Card.Text style={{ fontFamily: "monospace" }}>
+            {" "}
+            land wallet Address
+          </Card.Text>
+          <Card.Subtitle className="mb-2 text-muted">
+            {land.landAddress}
+          </Card.Subtitle>
+          <Card.Text style={{ fontFamily: "monospace" }}>
+            {" "}
+            land OwnerAddress
+          </Card.Text>
+          <Card.Subtitle className="mb-2 text-muted">
+            {land.landOwner}
+          </Card.Subtitle>
+          <Card.Text>This Land is For sale</Card.Text>
+          <Button variant="primary" onClick={() => handleCheck(land)}>
+            Buy
+          </Button>
+        </Card.Body>
+      </Card>
     );
   });
 }
+
+
+

@@ -28,10 +28,10 @@ function YourLand(props) {
   const lands = JSON.parse(localStorage.getItem("listOfLands")) || [];
   let isLand = false;
   const toDisplay = lands.filter((land) => {
-    if (land.landOwner === undefined) {
+    if (land.accountOwner === undefined) {
       return false;
     }
-    if (land.landOwner === props.value) {
+    if (land.accountOwner === props.value) {
       isLand = true;
       return true;
     }
@@ -45,7 +45,7 @@ function YourLand(props) {
         <thead>
           <tr>
             <th>Land Address</th>
-            <th>Land ID</th>
+            <th>Land Owner Wallet Address</th>
             <th>Land Location</th>
             <th>Property ID</th>
             <th className="text-right">Is Land Verified</th>
@@ -55,7 +55,7 @@ function YourLand(props) {
           {toDisplay.map((land) => (
             <tr key={land.landID}>
               <td>{land.landAddress}</td>
-              <td>{land.landID}</td>
+              <td>{land.landOwner}</td>
               <td>{land.landlocation}</td>
               <td>{land.propertyPID}</td>
               <td className="text-right">{land.isVerified ? 'Yes' : 'No'}</td>
@@ -83,7 +83,7 @@ export const DashBoard = () => {
     isforSell: " ",
     isLandVerified: " ",
     landOwner: " ",
-    isRemoved: " ",
+    accountOwner: " ",
   });
 
   const handleInput = (event) => {
@@ -99,16 +99,14 @@ export const DashBoard = () => {
   const handleClick = (event) => {
     event.preventDefault();
     landDetails.isLandVerified = false;
-    landDetails.isRemoved = false;
+    landDetails.accountOwner = username;
     landDetails.isforSell = true;
     landDetails.allLatitudeLongitude = 1000;
-    landDetails.landOwner = username;
     Object.keys(landDetails).forEach((key) => {
       if (landDetails[key] === " ") {
         setError(true);
       }
     });
-    navigate('/addUser')
     addLandtoStorage(landDetails);
     window.location.reload();
   };
@@ -127,7 +125,7 @@ export const DashBoard = () => {
         </div>
 
         <div className="form-group">
-          <label>Enter your Land ID</label>
+          <label> Land ID</label>
           <input
             type="text"
             className="form-control"
@@ -137,7 +135,7 @@ export const DashBoard = () => {
         </div>
 
         <div className="form-group">
-          <label>Enter your Land Location</label>
+          <label> Land Location</label>
           <input
             type="text"
             className="form-control"
@@ -147,7 +145,7 @@ export const DashBoard = () => {
         </div>
 
         <div className="form-group">
-          <label>Enter your Property ID</label>
+          <label> Property ID</label>
           <input
             type="text"
             className="form-control"
@@ -157,7 +155,17 @@ export const DashBoard = () => {
         </div>
 
         <div className="form-group">
-          <label>Enter Land Price</label>
+          <label>Land Owner Wallet Address </label>
+          <input
+            type="text"
+            className="form-control"
+            name="landOwner"
+            onChange={handleInput}
+          />
+        </div>
+
+        <div className="form-group">
+          <label> Price   (In dollars)</label>
           <input
             type="text"
             className="form-control"

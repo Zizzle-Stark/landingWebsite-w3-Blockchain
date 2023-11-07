@@ -1,24 +1,19 @@
 // SPDX-License-Identifier: MIT
-pragma solidity 0.8.20;
+pragma solidity ^0.8.20;
+import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 
-contract landAsset{
+contract landAsset is  ERC20{
+    constructor() ERC20("token","TKN"){}
     receive() external payable { }
 
-    modifier ownerValidate(address landAddress){
-        require(_landList[payable(landAddress)].landOwner == msg.sender, "You Are Not Owner");
-        _;
-    }
-
-    modifier etherValidate(address landAddress,uint256 amt){
-        require(_landList[payable(landAddress)].landOwner == msg.sender, "You Are Not Owner");
-        require(_landList[payable(landAddress)].price >= amt, "Not Enought Amount  In Your Walled");
+    modifier etherValidate(uint256 amt){
+        require(msg.value >= amt, "Not Enought Amount  In Your Walled");
         _;
     }
     struct lands {
         uint256 landID;
         string landlocation;
-        uint price;
-        string allLatitudeLongitude;
+        uint256 price;
         uint propertyPID;
         bool isforSell;
         bool isLandVerified;
@@ -38,6 +33,7 @@ contract landAsset{
     }
     mapping (address => lands ) _landList;
     mapping (address =>  user)  _userList;
+    mapping (address => bytes32) _encyptdata;
 
     address payable []   _landLog;
     address [] _userLog;
@@ -52,16 +48,16 @@ contract landAsset{
         address  _landAddress,
         uint256 _landID,
         string memory _Address,
-        uint _price,
-        string memory _allLatitudeLongitude,
+        uint256 _price,
         uint _propertyPID,
         bool _isLandVerified,
         address payable _landOwner
     ) public {
         bool _isforSell = true;
         bool _isRemoved = false;
-        lands memory _newland = lands(_landID,_Address,_price,_allLatitudeLongitude,_propertyPID,_isforSell,_isLandVerified,_landOwner, _isRemoved);
+        lands memory _newland = lands(_landID,_Address,_price,_propertyPID,_isforSell,_isLandVerified,_landOwner, _isRemoved);
         _landList[_landAddress] = _newland;
+        _encyptdata[_landAddress] = hashWithKeccak256(_landAddress,_landOwner,_Address);
         _landLog.push(payable (_landOwner));
 
     }
@@ -81,12 +77,19 @@ contract landAsset{
         }
         _landLog = _defaultlog;
     }
+  
+    function hashWithKeccak256(address add1, address payable add2,string memory data) public pure returns (bytes32) {
+        return keccak256(abi.encodePacked(add1,add2,data));
+    }
 
+    function getEncryptdata(address encryptAdd) public view returns(bytes32){
+        bytes32 _data = _encyptdata[encryptAdd];
+        return  _data;
+    }
     function getLand(address payable _getLand)public view  returns (
         uint256 landID,
         string memory landAddress,
-        uint _rice,
-        string memory allLatitudeLongitude,
+        uint256 _price,
         uint propertyPID,
         bool isforSell,
         bool isLandVerified,
@@ -98,7 +101,6 @@ contract landAsset{
             _land.landID,
         _land.landlocation,
         _land.price,
-        _land.allLatitudeLongitude,
         _land.propertyPID,
         _land.isforSell,
         _land.isLandVerified,
@@ -122,14 +124,14 @@ contract landAsset{
     _userLog.push(_id);
     }
 
-    function transferOwnerShip(address landAddress,address payable _newOwner) public ownerValidate(landAddress) returns(address){
-         transferEther(landAddress, _landList[landAddress].landOwner);
+    function transferOwnerShip(address landAddress,address payable _newOwner,uint256 amttoSent) public returns(address){
+         transferEther( _landList[landAddress].landOwner,amttoSent);
         _landList[landAddress].landOwner = _newOwner;
         return _newOwner;
     }
 
-    function transferEther(address landAddress, address  _sentTo) public payable etherValidate(landAddress,msg.value) returns (bool){
-       (bool success,) =  payable (_sentTo).call {value:msg.value} ('');
+    function transferEther(address _sentTo,uint256 amttoSent) public payable returns (bool){
+       (bool success, ) =  payable(_sentTo).call {value:amttoSent} ('');
        return success;
     }
 }

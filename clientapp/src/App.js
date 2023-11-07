@@ -7,7 +7,6 @@ import ErrorPage from "./ErrorPage";
 import styles from "./App.css";
 import ListedLand from "./MarketPlace";
 import Inspector from "./Inspector";
-import Orders from "./LandList";
 import AddUserForm from "./AddUser";
 export const App = () => {
   return (
