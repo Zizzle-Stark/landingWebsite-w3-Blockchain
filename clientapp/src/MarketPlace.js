@@ -3,6 +3,7 @@ import { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
+import etherDone from "./etherCheck";
 // const eth = new ethers.JsonRpcProvider(
 //   "https://eth-sepolia.g.alchemy.com/v2/AxJV_qAMMt6cXXLiZuw2jV_t_q_3nPfV"
 // );
@@ -73,7 +74,7 @@ function ListedLands(props) {
             {land.landOwner}
           </Card.Subtitle>
           <Card.Text>This Land is For sale</Card.Text>
-          <Button variant="primary" onClick={() => transferEther()}>
+          <Button variant="primary" onClick={() => transferEther(land.landOwner,land.price)}>
             Buy
           </Button>
         </Card.Body>
@@ -82,83 +83,8 @@ function ListedLands(props) {
   });
 }
 
-const transferEther = async () => {
-  const _abi = [
-    {
-      inputs: [],
-      stateMutability: "nonpayable",
-      type: "constructor",
-    },
-    {
-      inputs: [
-        {
-          internalType: "address payable",
-          name: "to",
-          type: "address",
-        },
-        {
-          internalType: "uint256",
-          name: "amt",
-          type: "uint256",
-        },
-      ],
-      name: "deposit",
-      outputs: [],
-      stateMutability: "payable",
-      type: "function",
-    },
-    {
-      inputs: [],
-      name: "getBalance",
-      outputs: [
-        {
-          internalType: "uint256",
-          name: "",
-          type: "uint256",
-        },
-      ],
-      stateMutability: "view",
-      type: "function",
-    },
-    {
-      inputs: [
-        {
-          internalType: "address payable",
-          name: "_to",
-          type: "address",
-        },
-      ],
-      name: "transferTo",
-      outputs: [],
-      stateMutability: "payable",
-      type: "function",
-    },
-    {
-      inputs: [
-        {
-          internalType: "address payable",
-          name: "thatPerson",
-          type: "address",
-        },
-      ],
-      name: "getDepositedamt",
-      outputs: [
-        {
-          internalType: "uint256",
-          name: "",
-          type: "uint256",
-        },
-      ],
-      stateMutability: "payable",
-      type: "function",
-    },
-  ];
-  const _address = "0x50Bc6347847D756f80fCBf6106B3B1375236C9c5";
-  const _deployedContract = new ethers.Contract(_address, _abi, eth);
-  console.log(await _deployedContract.getBalance())
-  console.log(_deployedContract);
-  let signer = null;
-
+const transferEther = async (ownerAddress,price) => {
+  etherDone(ownerAddress,price)
 // let provider;
 // if (window.ethereum == null) {
 
