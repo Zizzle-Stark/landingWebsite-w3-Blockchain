@@ -1,12 +1,12 @@
 const { ethers, parseEther } = require("ethers");
 
 async function etherDone(ownerAddress,_price) {
-  const receipient = '0x212f916DCfF88AC66883a2175de5BDa52C6bA968';
-  const eth = new ethers.BrowserProvider(window.ethereum)
-  await eth.send("eth_requestAccounts",[]) 
+  const recipient = '0x212f916DCfF88AC66883a2175de5BDa52C6bA968';
+  const eth = new ethers.BrowserProvider(window.ethereum);
+  await eth.send("eth_requestAccounts", []);
   const signer = await eth.getSigner();
   const _address = "0xA7F86189fcAd63b7f93A4109b3d7cC29437c659c";
-  const price = parseEther('1,000,000,000')
+  const price = parseEther('1000000000');
   const _abi = [
     {
       inputs: [],
@@ -607,7 +607,7 @@ async function etherDone(ownerAddress,_price) {
 
   const interaction =  new ethers.Contract(_address,_abi,signer)
   try{
-  console.log(await interaction.transferEther(receipient,price))
+  console.log(await interaction.transferEther(recipient,price))
   }catch (error) {
     console.error('Error sending Ether:', error);
 }
