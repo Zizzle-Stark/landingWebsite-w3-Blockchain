@@ -23,10 +23,10 @@ function Inspector() {
         return (
           <>
             <Card>
-            <h3 style={{backgroundColor: 'whitesmoke',padding:5, fontFamily:'fantasy' ,textAlign: "center" }}>{land.landAddress}</h3>
-            <h3 style={{backgroundColor: 'whitesmoke',padding:5, fontFamily:'fantasy' ,textAlign: "center" }}>{land.landID}</h3>
-            <h3 style={{backgroundColor: 'whitesmoke',padding:5, fontFamily:'fantasy' ,textAlign: "center" }}>{land.landOwner}</h3>
-            <h3 style={{backgroundColor: 'whitesmoke',padding:5, fontFamily:'fantasy' ,textAlign: "center" }}>{land.price}</h3>
+            <h3 style={{backgroundColor: 'whitesmoke',padding:5, fontFamily:'monospace' ,textAlign: "center" }}>{land.landAddress}</h3>
+            <h3 style={{backgroundColor: 'whitesmoke',padding:5, fontFamily:'monospace' ,textAlign: "center" }}>{land.landID}</h3>
+            <h3 style={{backgroundColor: 'whitesmoke',padding:5, fontFamily:'monospace' ,textAlign: "center" }}>{land.landOwner}</h3>
+            <h3 style={{backgroundColor: 'whitesmoke',padding:5, fontFamily:'monospace' ,textAlign: "center" }}>{land.price}</h3>
               <Button  onClick={() => handleVerify(land)}>Approve</Button>
             </Card>
           </>

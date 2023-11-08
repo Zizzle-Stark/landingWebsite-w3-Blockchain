@@ -27,9 +27,9 @@ export default function ListedLand() {
 
   return (
     <div className="container center">
-      <h1 className="text-center">Market Place</h1>
+      <h1 className="text-center"style={{fontFamily:"monospace"}}>Market Place</h1>
       <div className="text-center">
-        <button onClick={() => moveDashBoard()} className="btn btn-primary">
+        <button style={{fontFamily:"monospace"}} onClick={() => moveDashBoard()} className="btn btn-primary">
           {" "}
           Go to DashBoard
         </button>
@@ -52,11 +52,13 @@ function ListedLands(props) {
       return
     }
     if(!param.username != land.accountOwner){
-      await etherDone()
+      // await etherDone()
       const listOfLands = JSON.parse(localStorage.getItem("listOfLands")) || [];
       console.log(listOfLands)
       const index = listOfLands.findIndex(
-        (object) => land.accountOwner === param.username
+        (landoneByone) => {
+          return landoneByone.accountOwner === land.accountOwner
+        }
       ); 
       listOfLands[index].isforSell = false
       listOfLands[index].accountOwner = param.username
@@ -66,7 +68,6 @@ function ListedLands(props) {
     
   }
   return props.listedLands.map((land) => {
-    console.log(land.isforSell)
     if (!land.isforSell || land.landAddress === " " && land.price === " " && land.landID === " ") {
       return;
     }
@@ -76,28 +77,28 @@ function ListedLands(props) {
     return (
       <Card style={{ width: "18rem" }} className="mb-3">
         <Card.Body>
-          <Card.Text style={{ fontFamily: "monospace" }}> land ID</Card.Text>
+          <Card.Text style={{ fontFamily: "monospace" }}> Land ID</Card.Text>
           <Card.Title>{land.landID}</Card.Title>
-          <Card.Text style={{ fontFamily: "monospace" }}> land Price</Card.Text>
+          <Card.Text style={{ fontFamily: "monospace" }}> Land Price</Card.Text>
           <Card.Subtitle className="mb-2 text-muted">
             {land.price}
           </Card.Subtitle>
           <Card.Text style={{ fontFamily: "monospace" }}>
             {" "}
-            land wallet Address
+            Land wallet Address
           </Card.Text>
           <Card.Subtitle className="mb-2 text-muted">
             {land.landAddress}
           </Card.Subtitle>
           <Card.Text style={{ fontFamily: "monospace" }}>
             {" "}
-            land OwnerAddress
+            Land OwnerAddress
           </Card.Text>
           <Card.Subtitle className="mb-2 text-muted">
             {land.landOwner}
           </Card.Subtitle>
-          <Card.Text>This Land is For sale</Card.Text>
-          <Button variant="primary" onClick={() => handleCheck(land)}>
+          <Card.Text style={{fontFamily:"monospace"}}>This Land is For sale</Card.Text>
+          <Button style={{fontFamily:"monospace"}} variant="primary" onClick={() => handleCheck(land)}>
             Buy
           </Button>
         </Card.Body>

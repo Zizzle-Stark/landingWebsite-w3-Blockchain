@@ -4,7 +4,7 @@ export const Homepage = () => {
   return (
     <div>
       <nav className="navbar navbar-expand-md navbar-dark bg-dark">
-        <a className="navbar-brand" href="# ">
+        <a className="navbar-brand" href="# " style={{fontFamily:"monospace"}}>
           Home
         </a>
         <button
@@ -48,9 +48,9 @@ export const Homepage = () => {
       <main role="main" className="container mt-5">
         <div className="container">
           <div className="text-center mt-5">
-            <h3> Landing Site Using Smart Contracts</h3>
-            <p className="text-bold ">Hello user</p>
-            <button className="btn btn-primary" onClick={()=>navigate('/marketPlace')}> MarketPlace</button>
+            <h3 style={{fontFamily:"monospace"}} > Landing Site Using Smart Contracts</h3>
+            <p className="text-bold " style={{fontFamily:"monospace"}}>Hello user</p>
+            <button className="btn btn-primary" onClick={()=>navigate('/marketPlace')} style={{fontFamily:"monospace"}}> MarketPlace</button>
           </div>
         </div>
       </main>

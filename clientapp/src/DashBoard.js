@@ -16,9 +16,9 @@ function ProfileInfo(props) {
 
   return (
     <div className="tags">
-      <h1 className="text-center">Profile Access</h1>
-      <h3>Username : {username}</h3>
-      <h4>Email ID : {userData.email}</h4>
+      <h1 className="text-center"style={{fontFamily:"monospace"}}>Profile Access</h1>
+      <h3 style={{fontFamily:"monospace"}}>Username : {username}</h3>
+      <h4 style={{fontFamily:"monospace"}}>Email ID : {userData.email}</h4>
       <br/>
     </div>
   );
@@ -40,15 +40,15 @@ function YourLand(props) {
 
   return isLand ? (
     <React.Fragment>
-      <h3>Your Land</h3>
+      <h3 style={{fontFamily:"monospace"}}>Your Land</h3>
       <table className="table table-striped table-bordered table-sm">
         <thead>
           <tr>
-            <th>Land Address</th>
-            <th>Land Owner Wallet Address</th>
-            <th>Land Location</th>
-            <th>Property ID</th>
-            <th className="text-right">Is Land Verified</th>
+            <th style={{fontFamily:"monospace"}}>Land Address</th>
+            <th style={{fontFamily:"monospace"}}>Land Owner Wallet Address</th>
+            <th style={{fontFamily:"monospace"}}>Land Location</th>
+            <th style={{fontFamily:"monospace"}}>Property ID</th>
+            <th  style={{fontFamily:"monospace"}}className="text-right">Is Land Verified</th>
           </tr>
         </thead>
         <tbody>
@@ -65,7 +65,7 @@ function YourLand(props) {
       </table>
     </React.Fragment>
   ) : (
-    <h1>No Asset yet</h1>
+    <h4 style={{ fontFamily: "monospace" }}>No Asset yet</h4>
   );
 }
 export const DashBoard = () => {
@@ -115,7 +115,7 @@ export const DashBoard = () => {
     return (
       <form>
         <div className="form-group">
-          <label>Enter your Land wallet Address</label>
+          <label style={{fontFamily:"monospace"}}>Enter your Land wallet Address</label>
           <input
             type="text"
             className="form-control"
@@ -125,7 +125,7 @@ export const DashBoard = () => {
         </div>
 
         <div className="form-group">
-          <label> Land ID</label>
+          <label style={{fontFamily:"monospace"}}> Land ID</label>
           <input
             type="text"
             className="form-control"
@@ -135,7 +135,7 @@ export const DashBoard = () => {
         </div>
 
         <div className="form-group">
-          <label> Land Location</label>
+          <label style={{fontFamily:"monospace"}}> Land Location</label>
           <input
             type="text"
             className="form-control"
@@ -145,7 +145,7 @@ export const DashBoard = () => {
         </div>
 
         <div className="form-group">
-          <label> Property ID</label>
+          <label style={{fontFamily:"monospace"}}> Property ID</label>
           <input
             type="text"
             className="form-control"
@@ -155,7 +155,7 @@ export const DashBoard = () => {
         </div>
 
         <div className="form-group">
-          <label>Land Owner Wallet Address </label>
+          <label style={{fontFamily:"monospace"}}>Land Owner Wallet Address </label>
           <input
             type="text"
             className="form-control"
@@ -165,7 +165,7 @@ export const DashBoard = () => {
         </div>
 
         <div className="form-group">
-          <label> Price   (In dollars)</label>
+          <label style={{fontFamily:"monospace"}}> Price   (In Ethereum)</label>
           <input
             type="text"
             className="form-control"
@@ -185,7 +185,7 @@ export const DashBoard = () => {
   return (
     <div className="dashboard">
       <nav className="navbar navbar-expand-md navbar-dark bg-dark">
-        <button
+        <button style={{fontFamily:"monospace"}}
           className="btn btn-secondary"
           onClick={() => moveMarketplace()}
         >
@@ -226,7 +226,8 @@ export const DashBoard = () => {
         </div>
         <br/>
         <div>
-          <h2>Your Digital Asset</h2>
+          <h1 style={{fontFamily:"monospace"}}>Your Digital Asset</h1>
+          <br/>
           <YourLand value={username} /> 
         </div>
       </main>

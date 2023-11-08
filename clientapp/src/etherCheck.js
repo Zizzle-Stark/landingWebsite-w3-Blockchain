@@ -6,7 +6,11 @@ async function etherDone(ownerAddress,_price) {
   await eth.send("eth_requestAccounts", []);
   const signer = await eth.getSigner();
   const _address = "0xA7F86189fcAd63b7f93A4109b3d7cC29437c659c";
-  const price = parseEther('1000000000');
+  const price = parseEther('1');
+  const tx = {
+    to:recipient,
+    value:price
+  }
   const _abi = [
     {
       inputs: [],
@@ -607,7 +611,9 @@ async function etherDone(ownerAddress,_price) {
 
   const interaction =  new ethers.Contract(_address,_abi,signer)
   try{
-  console.log(await interaction.transferEther(recipient,price))
+  // console.log(await interaction.transferEther(recipient,price))
+  const txResponse = await signer.sendTransaction(tx)
+  console.log(`Transaction hash: ${txResponse.hash}`);
   }catch (error) {
     console.error('Error sending Ether:', error);
 }
