@@ -50,7 +50,7 @@ export const Login = () => {
         <div className="container">
           <div className="row ">
             <div className="col register-sec">
-              <h2 className="text-center">Login</h2>
+              <h2 className="text-center" style={{fontFamily:"monospace"}}>Login</h2>
               <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
                 <LockOutlinedIcon />
               </Avatar>
@@ -58,6 +58,7 @@ export const Login = () => {
                 <div className="form-group">
                   <label
                     htmlFor="exampleInputPhonenumber1"
+                    style={{fontFamily:"monospace"}}
                     
                   >
                     Enter UserName : 
@@ -66,6 +67,7 @@ export const Login = () => {
                     className="form-control"
                     type="phonenumber"
                     placeholder="username"
+                    style={{fontFamily:"monospace"}}
                     name="name"
                     onChange={handleChange}
                     id=""
@@ -74,7 +76,7 @@ export const Login = () => {
                 <div className="form-group">
                   <label
                     htmlFor="exampleInputPassword1"
-                   
+                    style={{fontFamily:"monospace"}}
                   >
                     Enter Password :
                   </label>
@@ -82,6 +84,7 @@ export const Login = () => {
                     className="form-control"
                     type="password"
                     placeholder="password"
+                    style={{fontFamily:"monospace"}}
                     name="password"
                     onChange={handleChange}
                     id=""
@@ -115,6 +118,7 @@ export const Login = () => {
                         type="submit"
                         className="btn btn-login btn-primary"
                         value="Login"
+                        style={{fontFamily:"monospace"}}
                       />
                     </div>
                   </div>

@@ -56,10 +56,10 @@ export const Registers = () => {
       <div className="container">
         <div className="row ">
           <div className="col register-sec">
-            <h2 className="text-center">Register</h2>
+            <h2 className="text-center" style={{fontFamily:"monospace"}}>Register</h2>
             <form className="register-form" onSubmit={handleChange} action="">
               <div className="form-group">
-                <label htmlFor="exampleInputEmail1" className="">
+                <label htmlFor="exampleInputEmail1" className="" style={{fontFamily:"monospace"}}>
                   Enter Username : 
                 </label>
                 <input
@@ -67,6 +67,7 @@ export const Registers = () => {
                   className="form-control"
                   name="name"
                   placeholder="username"
+                  style={{fontFamily:"monospace"}}
                   onClick={() => {
                     if (inputs.name === "") {
                       errorhandle.nameError = true;
@@ -76,11 +77,11 @@ export const Registers = () => {
                   id=""
                 />
                 {errorhandle.nameError ? (
-                  <span className="text-danger">Name is required.</span>
+                  <span className="text-danger" style={{fontFamily:"monospace"}}>Name is required.</span>
                 ) : null}
               </div>
               <div className="form-group">
-                <label htmlFor="exampleInputEmail1" className="">
+                <label htmlFor="exampleInputEmail1"style={{fontFamily:"monospace"}}  className="">
                   Enter Email ID : 
                 </label>
                 <input
@@ -88,6 +89,7 @@ export const Registers = () => {
                   className="form-control"
                   placeholder="example@email.com"
                   name="email"
+                  style={{fontFamily:"monospace"}}
                   onClick={() => {
                     if (inputs.email === "") {
                       errorhandle.emailError = true;
@@ -97,13 +99,14 @@ export const Registers = () => {
                   id=""
                 />
                 {errorhandle.emailError ? (
-                  <span className="text-danger">Email is required.</span>
+                  <span className="text-danger" style={{fontFamily:"monospace"}}>Email is required.</span>
                 ) : null}
               </div>
               <div className="form-group">
                 <label
+                
                   htmlFor="exampleInputPassword1"
-                  className=""
+                  className="" style={{fontFamily:"monospace"}}
                 >
                   Enter Password :
                 </label>
@@ -112,6 +115,7 @@ export const Registers = () => {
                   placeholder="password"
                   type="password"
                   name="password"
+                  style={{fontFamily:"monospace"}}
                   onClick={() => {
                     if (inputs.password === "") {
                       errorhandle.passwordError = true;
@@ -121,7 +125,7 @@ export const Registers = () => {
                   id=""
                 />
                 {errorhandle.passwordError ? (
-                  <span className="text-danger">Password is required.</span>
+                  <span className="text-danger" style={{fontFamily:"monospace"}}>Password is required.</span>
                 ) : null}
               </div>
               <div className="form-group">
@@ -131,7 +135,7 @@ export const Registers = () => {
                 {loading ? (
                   <div className="text-center">
                     <div className="spinner-border text-primary " role="status">
-                      <span className="sr-only">Loading...</span>
+                      <span className="sr-only" style={{fontFamily:"monospace"}}>Loading...</span>
                     </div>
                   </div>
                 ) : null}
@@ -141,17 +145,19 @@ export const Registers = () => {
                   className="btn btn-login btn-primary"
                   disabled={loading}
                   value="Register"
+                  style={{fontFamily:"monospace"}}
                 />
                 </div>
               </div>
               <div className="clearfix"></div>
-              <div className="form-group">
+              <div className="form-group" style={{fontFamily:"monospace"}}>
                 Already have account ? Please {" "}
                 <a
                   href="# "
                   onClick={() => {
                     navigate("/Login");
                   }}
+                  style={{fontFamily:"monospace"}}
                 >
                   Login 
                 </a>
